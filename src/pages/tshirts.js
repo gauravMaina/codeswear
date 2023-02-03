@@ -1,186 +1,59 @@
-import Link from 'next/link'
-import React from 'react'
+import React from "react";
+import Link from "next/link";
+import Product from "models/Product";
+import mongoose from "mongoose";
+const Tshirts = ({ products }) => {
+    return (
+        <div>
+            <section className="text-gray-600 body-font">
+                <div className="container px-5 py-24 mx-auto">
+                    <div className="flex flex-wrap justify-center -m-4">
+                        {
+                            products.map((product) => {
+                                return <Link key={product._id} href={`product/${product.slug}`}>
+                                    <div className="p-4 w-full cursor-pointer shadow-lg m-1 rounded-md">
+                                        <a className="block relative rounded overflow-hidden">
+                                            <img
+                                                alt="ecommerce"
+                                                className="h-[30vh] m-auto md:h-[36vh] block"
+                                                src={product.image}
+                                            />
+                                        </a>
+                                        <div className="mt-4 text-center md:text-left">
+                                            <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                                                {product.category}
+                                            </h3>
+                                            <h2 className="text-gray-900 title-font text-lg font-medium">
+                                                {product.title}
+                                            </h2>
+                                            <p className="mt-1">Rs {product.price}</p>
+                                            <p className="mt-1">{product.size}</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            })
+                        }
 
-function Tshirt () {
-  return (
-    <div>
-      <section className='text-gray-600 body-font'>
-        <div className='container px-5 py-24 mx-auto'>
-          <div className='flex flex-wrap -m-4'>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='object-cover m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
+                    </div>
                 </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹449.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                </div>
-              </Link>
-            </div>
-            <div className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-5'>
-              <Link href={'/product/Tshirt'}>
-                <a className='m-auto md:mx-0 h-[30vh] md:h-[36vh] block'>
-                  <img
-                    alt='ecommerce'
-                    className='object-cover object-center w-[50vw]  md:w-full h-full block'
-                    src='https://m.media-amazon.com/images/I/61rSf7lBx1L._UX569_.jpg'
-                  />
-                </a>
-                <div className='mt-4'>
-                  <h3 className='text-gray-500 text-xs tracking-widest title-font mb-1'>
-                    T-Shirts
-                  </h3>
-                  <h2 className='text-gray-900 title-font text-lg font-medium'>
-                    Wear the code
-                  </h2>
-                  <p className='mt-1'>₹16.00</p>
-                  <p className='mt-1'>S, M, L, XL, XXL</p>
-                  449{' '}
-                </div>
-              </Link>
-            </div>
-          </div>
+            </section>
         </div>
-      </section>
-    </div>
-  )
-}
+    );
+};
 
-export default Tshirt
+// server side rendering
+export async function getServerSideProps(context) {
+    if (!mongoose.connections[0].readyState) {
+        // make connection to mongodb
+        await mongoose.connect(process.env.MONGO_URI)
+    }
+    let products = await Product.find({ category: "tshirt" });
+
+    return {
+        props: {
+            products: JSON.parse(JSON.stringify(products))
+        }
+    }
+
+}
+export default Tshirts;
