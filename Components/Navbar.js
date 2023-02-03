@@ -80,10 +80,10 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart }) => {
 
                 {(Object.keys(cart).length !== 0) && <div className="flex">
                     <Link href={'/checkout'} >
-                        <button className="flex mx-auto mr-2 text-white bg-green-500 border-0 py-2 px-2 focus:outline-none hover:bg-green-600 rounded text-sm"><BsBagCheckFill className="m-1" />Checkout</button>
+                        <button className="flex mx-auto mr-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-sm"><BsBagCheckFill className="m-1" />Checkout</button>
                     </Link>
                     {/* clear cart button */}
-                    <button onClick={clearCart} className="flex mx-auto mr-2 text-white bg-red-500 border-0 py-2 px-2 focus:outline-none hover:bg-red-600 rounded text-sm">Clear Cart</button>
+                    <button onClick={clearCart} className="flex mx-auto mr-2 text-white bg-orange-500 border-0 py-2 px-2 focus:outline-none hover:bg-orange-600 rounded text-sm">Clear Cart</button>
                 </div>
                 }
             </div>
