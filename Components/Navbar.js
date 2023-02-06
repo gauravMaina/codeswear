@@ -33,16 +33,16 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart }) => {
             </div>
             <div className="nav">
                 <ul className="flex space-x-2 font-bold md:text-sm">
-                    <Link href="/tshirts">
+                    <Link href="/tshirts" className="hover:text-orange-500">
                         <li>T-Shirts</li>
                     </Link>
-                    <Link href="/hoodies">
+                    <Link href="/hoodies" className="mr-5 hover:text-orange-500">
                         <li>Hoodies</li>
                     </Link>
-                    <Link href="/mugs">
+                    <Link href="/mugs" className="mr-5 hover:text-orange-500">
                         <li>Mugs</li>
                     </Link>
-                    <Link href="/stickers">
+                    <Link href="/stickers" className="mr-5 hover:text-orange-500">
                         <li>Stickers</li>
                     </Link>
                 </ul>
@@ -52,7 +52,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart }) => {
                 <AiOutlineShoppingCart onClick={toggleCart} size={30} className="text-orange-500" />
             </div>
 
-            <div ref={ref} className={`w-72 h-[100vh] sideCart absolute bg-orange-100 top-0 right-0 py-10 px-8 transform transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div ref={ref} className={`w-72 h-[100vh] sideCart absolute overflow-y-scroll bg-orange-100 top-0 right-0 py-10 px-8 transform transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
                 <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
                 <span onClick={toggleCart} className="absolute top-3 right-2 cursor-pointer text-2xl text-orange-500"><AiFillCloseCircle /></span>
 
@@ -67,7 +67,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart }) => {
                     {Object.keys(cart).map((k) => {
                         return <li key={k} >
                             <div className="item flex my-5">
-                            <div className='w-2/3 font-semibold'>{cart[k].name}({cart[k].size}/{cart[k].variant})</div>
+                                <div className='w-2/3 font-semibold'>{cart[k].name}({cart[k].size}/{cart[k].variant})</div>
                                 <div className="flex items-center justify-center w-1/3 font-semibold">
                                     <AiFillMinusCircle onClick={() => { removeFromCart(k) }} className="cursor-pointer text-orange-500" />
                                     <span className="mx-2">{cart[k].qty} </span>
