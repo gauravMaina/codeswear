@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import mongoose from 'mongoose'
 import Product from 'models/Product'
 
-const Slug = ({ addToCart, product, variants,buyNow}) => {
+const Slug = ({ addToCart, product, variants, buyNow }) => {
     const router = useRouter()
     const { slug } = router.query
 
@@ -15,9 +17,29 @@ const Slug = ({ addToCart, product, variants,buyNow}) => {
         let pinJson = await pins.json()
         if (pinJson.includes(parseInt(pin))) {
             setService(true)
+            toast.success('Your Pincode is serviciable', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         else {
             setService(false)
+            toast.error('Sorry, Your Pincode is not Serviceable', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
     }
 
@@ -34,6 +56,16 @@ const Slug = ({ addToCart, product, variants,buyNow}) => {
 
     return <>
         <section className="text-gray-600 body-font overflow-hidden">
+            <ToastContainer position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light" />
             <div className="container px-5 py-14 mx-auto">
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                     <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded" src={product.image} /> <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
