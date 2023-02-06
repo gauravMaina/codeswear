@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
             }
         }
         catch (error) {
-            console.log(error)
+            console.error(error)
             localStorage.clear()
         }
     }, [])
@@ -34,7 +34,6 @@ export default function App({ Component, pageProps }) {
 
     const addToCart = (itemCode, qty, price, name, size, variant) => {
         let newCart = cart
-
         if (itemCode in cart) {
             newCart[itemCode].qty += qty
         }
