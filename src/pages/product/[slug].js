@@ -18,28 +18,28 @@ const Slug = ({ addToCart, product, variants, buyNow }) => {
         if (pinJson.includes(parseInt(pin))) {
             setService(true)
             toast.success('Your Pincode is serviciable', {
-                position: "top-right",
-                autoClose: 5000,
+                position: "top-left",
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
         else {
             setService(false)
             toast.error('Sorry, Your Pincode is not Serviceable', {
-                position: "top-right",
-                autoClose: 5000,
+                position: "top-left",
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
     }
 
