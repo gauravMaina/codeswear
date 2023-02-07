@@ -1,3 +1,4 @@
+const CryptoJS = require("crypto-js");
 import User from "../../../models/User"
 import connectDB from "../../../middleware/mongoose"
 
@@ -8,7 +9,9 @@ const handler = async (req, res) => {
                 email: req.body.email
             })
             if (user) {
-                if (user.email === req.body.email && user.password === req.body.password) {
+                const bytes = CryptoJS.AES.decrypt(user.password, 'secret4567');
+                const userPassword = bytes.toString(CryptoJS.enc.Utf8);
+                if (user.email === req.body.email && userPassword === req.body.password) {
                     res.status(200).json({ success: true, user })
                 }
                 else {
