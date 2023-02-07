@@ -35,7 +35,8 @@ const Login = () => {
                 progress: undefined,
                 theme: "light",
             });
-            console.log(response.user)
+            console.log(response.token)
+            localStorage.setItem('token', response.token)
             setTimeout(() => {
                 router.push('http://localhost:3000')
             }, 1000)
