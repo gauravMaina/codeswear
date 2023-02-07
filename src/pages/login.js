@@ -21,7 +21,7 @@ const Login = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await fetch('http://localhost:3000/api/login', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Login = () => {
             console.log(response.token)
             localStorage.setItem('token', response.token)
             setTimeout(() => {
-                router.push('http://localhost:3000')
+                router.push(process.env.NEXT_PUBLIC_HOST)
             }, 1000)
         }
         else {
