@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
+
 const Login = () => {
+    const router = useRouter()
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    })
+    const { email, password } = user
+    const handleChange = (event) => {
+        setUser({ ...user, [event.target.name]: event.target.value })
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const res = await fetch('http://localhost:3000/api/login', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+        const response = await res.json()
+        if (response.success) {
+            toast.success('You successfully logged in', {
+                position: "top-left",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            console.log(response.user)
+            setTimeout(() => {
+                router.push('http://localhost:3000')
+            }, 1000)
+        }
+        else {
+            toast.error(response.message, {
+                position: "top-left",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+    }
     return (
         <div>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <ToastContainer
+                    position="top-left"
+                    autoClose={1000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <div className="w-full max-w-md space-y-8">
                     <div>
                         <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600" alt="Your Company" />
@@ -13,16 +77,16 @@ const Login = () => {
                             <Link href={'/signup'} className="font-medium text-orange-600 hover:text-orange-500"> Sign Up</Link>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit} method="POST">
                         <input type="hidden" name="remember" value="true" />
                         <div className="-space-y-px rounded-md shadow-sm" >
                             <div>
-                                <label for="email-address" className="sr-only">Email address</label>
-                                <input id="email-address" name="email" type="email" autocomplete="email" required className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm" placeholder="Email address" />
+                                <label for="email" className="sr-only">Email address</label>
+                                <input value={email} onChange={handleChange} id="email" name="email" type="email" autocomplete="email" required className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm" placeholder="Email address" />
                             </div>
                             <div>
                                 <label for="password" className="sr-only">Password</label>
-                                <input id="password" name="password" type="password" autocomplete="current-password" required className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm" placeholder="Password" />
+                                <input value={password} onChange={handleChange} id="password" name="password" type="password" autocomplete="current-password" required className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm" placeholder="Password" />
                             </div>
                         </div>
 
