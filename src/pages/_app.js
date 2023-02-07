@@ -96,6 +96,7 @@ export default function App({ Component, pageProps }) {
         setUser({ value: null })
         localStorage.removeItem('token')
         setKey(Math.random())
+        router.push('/')
     }
     return <>
         <LoadingBar
